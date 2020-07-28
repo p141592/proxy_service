@@ -1,7 +1,7 @@
 # Registry where you want store your Docker images
 DOCKER_REGISTRY = gcr.io/${GCLOUD-PROJECT-ID}
 PORTS = 8080:8080
-PROJECT_NAME = basic-python
+PROJECT_NAME = proxy-service
 GCLOUD-PROJECT-ID = home-260209
 ENV = dev
 MEMORY_LIMIT = 50M
