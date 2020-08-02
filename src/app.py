@@ -1,7 +1,8 @@
 import datetime
-
+import ujson
 import httpx
 import uvicorn
+
 from httpx import Headers
 from starlette.requests import Request
 from starlette.responses import Response
@@ -58,9 +59,10 @@ async def app(scope, receive, send):
         url = TARGET_SERVER + request.url.path
         r = await client.request(request.method, url, headers=Headers(headers), data=await request.body())
 
-    response = Response(r.content, headers=r.headers, status_code=r.status_code)
-    await response(scope, receive, send)
-
+    response = UJSONResponse(r.json())
+    #response = Response(content=r.content, headers=r.headers, status_code=r.status_code, media_type="application/json")
+    result = await response(scope, receive, send)
+    return result
 
 uvicorn.run(app, host="0.0.0.0")
 
