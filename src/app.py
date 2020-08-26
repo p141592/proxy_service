@@ -63,4 +63,3 @@ async def app(scope, receive, send):
 
 
 uvicorn.run(app, host="0.0.0.0")
-
